@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserMapper">
+  <resultMap id="BaseResultMap" type="pojo.User">
+    <id column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_class" jdbcType="INTEGER" property="userClass" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.User">
+    insert into user (userid, user_name, user_pwd, 
+      user_email, user_class, creat_time, 
+      update_time)
+    values ( #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR},
+      #{userEmail,jdbcType=VARCHAR}, #{userClass,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pojo.User">
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_class = #{userClass,jdbcType=INTEGER},
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select userid, user_name, user_pwd, user_email, user_class, creat_time, update_time
+    from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select userid, user_name, user_pwd, user_email, user_class, creat_time, update_time
+    from user
+  </select>
+</mapper>

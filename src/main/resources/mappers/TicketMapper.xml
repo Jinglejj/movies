@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TicketMapper">
+  <resultMap id="BaseResultMap" type="pojo.Ticket">
+    <id column="tk_id" jdbcType="INTEGER" property="tkId" />
+    <result column="tk_status" jdbcType="INTEGER" property="tkStatus" />
+    <result column="dict_seat" jdbcType="VARCHAR" property="dictSeat" />
+    <result column="dict_hall" jdbcType="INTEGER" property="dictHall" />
+    <result column="dict_start_time" jdbcType="VARCHAR" property="dictStartTime" />
+    <result column="cine_address" jdbcType="VARCHAR" property="cineAddress" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ticket
+    where tk_id = #{tkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.Ticket">
+    insert into ticket (tk_id, tk_status, dict_seat, 
+      dict_hall, dict_start_time, cine_address, 
+      user_id, creat_time, update_time
+      )
+    values (#{tkStatus,jdbcType=INTEGER}, #{dictSeat,jdbcType=VARCHAR},
+      #{dictHall,jdbcType=INTEGER}, #{dictStartTime,jdbcType=VARCHAR}, #{cineAddress,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pojo.Ticket">
+    update ticket
+    set tk_status = #{tkStatus,jdbcType=INTEGER},
+      dict_seat = #{dictSeat,jdbcType=VARCHAR},
+      dict_hall = #{dictHall,jdbcType=INTEGER},
+      dict_start_time = #{dictStartTime,jdbcType=VARCHAR},
+      cine_address = #{cineAddress,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
+    where tk_id = #{tkId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select tk_id, tk_status, dict_seat, dict_hall, dict_start_time, cine_address, user_id, 
+    creat_time, update_time
+    from ticket
+    where tk_id = #{tkId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select tk_id, tk_status, dict_seat, dict_hall, dict_start_time, cine_address, user_id, 
+    creat_time, update_time
+    from ticket
+  </select>
+</mapper>

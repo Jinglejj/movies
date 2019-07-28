@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MovieMapper">
+  <resultMap id="BaseResultMap" type="pojo.Movie">
+    <id column="mov_id" jdbcType="INTEGER" property="movId" />
+    <result column="mov_name" jdbcType="VARCHAR" property="movName" />
+    <result column="mov_description" jdbcType="VARCHAR" property="movDescription" />
+    <result column="mov_type" jdbcType="INTEGER" property="movType" />
+    <result column="mov_status" jdbcType="INTEGER" property="movStatus" />
+    <result column="mov_last_time" jdbcType="TIMESTAMP" property="movLastTime" />
+    <result column="mov_director" jdbcType="VARCHAR" property="movDirector" />
+    <result column="mov_core" jdbcType="DOUBLE" property="movCore" />
+    <result column="mov_release_time" jdbcType="TIMESTAMP" property="movReleaseTime" />
+    <result column="mov_actor" jdbcType="VARCHAR" property="movActor" />
+    <result column="mov_is_come" jdbcType="INTEGER" property="movIsCome" />
+    <result column="mov_is_hot" jdbcType="INTEGER" property="movIsHot" />
+    <result column="mov_image" jdbcType="VARCHAR" property="movImage" />
+    <result column="mov_photos" jdbcType="VARCHAR" property="movPhotos" />
+    <result column="mov_area" jdbcType="VARCHAR" property="movArea" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from movie
+    where mov_id = #{movId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.Movie">
+    insert into movie ( mov_name, mov_description,
+      mov_type, mov_status, mov_last_time, 
+      mov_director, mov_core, mov_release_time, 
+      mov_actor, mov_is_come, mov_is_hot, 
+      mov_image, mov_photos, mov_area, 
+      creat_time, update_time)
+    values (#{movName,jdbcType=VARCHAR}, #{movDescription,jdbcType=VARCHAR},
+      #{movType,jdbcType=INTEGER}, #{movStatus,jdbcType=INTEGER}, #{movLastTime,jdbcType=TIMESTAMP}, 
+      #{movDirector,jdbcType=VARCHAR}, #{movCore,jdbcType=DOUBLE}, #{movReleaseTime,jdbcType=TIMESTAMP}, 
+      #{movActor,jdbcType=VARCHAR}, #{movIsCome,jdbcType=INTEGER}, #{movIsHot,jdbcType=INTEGER}, 
+      #{movImage,jdbcType=VARCHAR}, #{movPhotos,jdbcType=VARCHAR}, #{movArea,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pojo.Movie">
+    update movie
+    set mov_name = #{movName,jdbcType=VARCHAR},
+      mov_description = #{movDescription,jdbcType=VARCHAR},
+      mov_type = #{movType,jdbcType=INTEGER},
+      mov_status = #{movStatus,jdbcType=INTEGER},
+      mov_last_time = #{movLastTime,jdbcType=TIMESTAMP},
+      mov_director = #{movDirector,jdbcType=VARCHAR},
+      mov_core = #{movCore,jdbcType=DOUBLE},
+      mov_release_time = #{movReleaseTime,jdbcType=TIMESTAMP},
+      mov_actor = #{movActor,jdbcType=VARCHAR},
+      mov_is_come = #{movIsCome,jdbcType=INTEGER},
+      mov_is_hot = #{movIsHot,jdbcType=INTEGER},
+      mov_image = #{movImage,jdbcType=VARCHAR},
+      mov_photos = #{movPhotos,jdbcType=VARCHAR},
+      mov_area = #{movArea,jdbcType=VARCHAR},
+    where mov_id = #{movId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select mov_id, mov_name, mov_description, mov_type, mov_status, mov_last_time, mov_director, 
+    mov_core, mov_release_time, mov_actor, mov_is_come, mov_is_hot, mov_image, mov_photos, 
+    mov_area, creat_time, update_time
+    from movie
+    where mov_id = #{movId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select mov_id, mov_name, mov_description, mov_type, mov_status, mov_last_time, mov_director, 
+    mov_core, mov_release_time, mov_actor, mov_is_come, mov_is_hot, mov_image, mov_photos, 
+    mov_area, creat_time, update_time
+    from movie
+  </select>
+</mapper>

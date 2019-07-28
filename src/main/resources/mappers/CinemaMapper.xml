@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CinemaMapper">
+  <resultMap id="BaseResultMap" type="pojo.Cinema">
+    <id column="cine_id" jdbcType="INTEGER" property="cineId" />
+    <result column="cine_name" jdbcType="VARCHAR" property="cineName" />
+    <result column="cine_province" jdbcType="VARCHAR" property="cineProvince" />
+    <result column="cine_city" jdbcType="VARCHAR" property="cineCity" />
+    <result column="cine_area" jdbcType="VARCHAR" property="cineArea" />
+    <result column="cine_address" jdbcType="VARCHAR" property="cineAddress" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cinema
+    where cine_id = #{cineId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.Cinema">
+    insert into cinema (cine_name, cine_province,
+      cine_city, cine_area, cine_address, 
+      creat_time, update_time)
+    values ( #{cineName,jdbcType=VARCHAR}, #{cineProvince,jdbcType=VARCHAR},
+      #{cineCity,jdbcType=VARCHAR}, #{cineArea,jdbcType=VARCHAR}, #{cineAddress,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pojo.Cinema">
+    update cinema
+    set cine_name = #{cineName,jdbcType=VARCHAR},
+      cine_province = #{cineProvince,jdbcType=VARCHAR},
+      cine_city = #{cineCity,jdbcType=VARCHAR},
+      cine_area = #{cineArea,jdbcType=VARCHAR},
+      cine_address = #{cineAddress,jdbcType=VARCHAR}
+    where cine_id = #{cineId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select cine_id, cine_name, cine_province, cine_city, cine_area, cine_address, creat_time, 
+    update_time
+    from cinema
+    where cine_id = #{cineId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select cine_id, cine_name, cine_province, cine_city, cine_area, cine_address, creat_time, 
+    update_time
+    from cinema
+  </select>
+</mapper>

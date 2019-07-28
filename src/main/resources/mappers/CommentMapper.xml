@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="pojo.Comment">
+    <id column="com_id" jdbcType="INTEGER" property="comId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="mov_id" jdbcType="INTEGER" property="movId" />
+    <result column="com_content" jdbcType="VARCHAR" property="comContent" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where com_id = #{comId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.Comment">
+    insert into comment ( user_id, mov_id,
+      com_content, creat_time, update_time
+      )
+    values ( #{userId,jdbcType=INTEGER}, #{movId,jdbcType=INTEGER},
+      #{comContent,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="pojo.Comment">
+    update comment
+    set user_id = #{userId,jdbcType=INTEGER},
+      mov_id = #{movId,jdbcType=INTEGER},
+      com_content = #{comContent,jdbcType=VARCHAR}
+    where com_id = #{comId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select com_id, user_id, mov_id, com_content, creat_time, update_time
+    from comment
+    where com_id = #{comId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select com_id, user_id, mov_id, com_content, creat_time, update_time
+    from comment
+  </select>
+</mapper>

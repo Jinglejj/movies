@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import pojo.Movie;
 
 public interface MovieMapper {
@@ -11,6 +13,8 @@ public interface MovieMapper {
     Movie selectByPrimaryKey(Integer movId);
 
     List<Movie> selectAll();
+
+    List<Movie> findByName(String name);
 
     int updateByPrimaryKey(Movie record);
 }

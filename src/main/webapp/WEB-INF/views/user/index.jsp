@@ -13,6 +13,7 @@
 </head>
 <body>
 
+${list}
 
 
 <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>

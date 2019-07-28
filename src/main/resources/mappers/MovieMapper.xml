@@ -69,4 +69,8 @@
     mov_area, creat_time, update_time
     from movie
   </select>
+  <select id="findByName" resultMap="BaseResultMap">
+    select * from movie
+    where name=#{name,jdbcType=VARCHAR}
+  </select>
 </mapper>

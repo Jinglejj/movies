@@ -5,14 +5,11 @@
 <configuration>
     <properties>
         <property name="database.driver" value="com.mysql.jdbc.Driver"/>
-        <property name="database.url"  value="jdbc:mysql://39.105.20.143:3306/movies?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="database.url"  value="jdbc:mysql://39.105.20.143:3306/movies?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false;"/>
         <property name="database.username" value="root"/>
         <property name="database.password" value="990727"/>
     </properties>
 
-    <typeAliases>
-        <typeAlias alias="role" type="pojo.Role"/>
-    </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
